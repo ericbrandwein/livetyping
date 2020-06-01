@@ -60,7 +60,7 @@ AdditionalMethodState >> doesPointToRemoteVector: variableIndexOrRemoteVectorInf
 ]
 
 { #category : #'*LiveTyping' }
-AdditionalMethodState >> doesTheMethodHasVariables [
+AdditionalMethodState >> doesTheMethodHaveVariables [
 
 	^method notNil and: [ method numTemps > 0 ]
 ]
@@ -98,7 +98,7 @@ AdditionalMethodState >> initializeTypeInformationUsing: aMethodNode [
 { #category : #'*LiveTyping' }
 AdditionalMethodState >> initializeVariablesRawTypesUsing: aMethodNode [
 
-	self doesTheMethodHasVariables
+	self doesTheMethodHaveVariables
 		ifTrue: [ self initializeVariablesRawTypesWhenMethodHasVariablesUsing: aMethodNode ]
 		ifFalse: [ self initializeVariablesRawTypesWhenMethodHasNoVariables ]
 
