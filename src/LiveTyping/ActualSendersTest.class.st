@@ -54,7 +54,9 @@ ActualSendersTest >> m3: anObject [
 
 { #category : #'test data' }
 ActualSendersTest >> setUp [
-
+	super setUp.
+	self class methodsDo: [ :method | method initializeTypeInformation ].
+	SmallInteger initializeTypeInformation.
 	"Do not remove. It is used in test20.... - Hernan"
 ]
 
@@ -65,7 +67,7 @@ ActualSendersTest >> test01SurelyRecognizeTypeSenderWhenSentToInstanceVariable [
 	
 	v1 m1.
 	
-	self assert: (self class>>thisContext selector doesOnlySurelySend: self class>>#m1)
+	self assert: (thisContext method doesOnlySurelySend: self class>>#m1)
 ]
 
 { #category : #tests }
@@ -76,8 +78,7 @@ ActualSendersTest >> test02SurelyRecognizeTypeSenderWhenSentToTemporaryVariable 
 	t1 := self.
 	
 	t1 m1.
-	
-	self assert: (self class>>thisContext selector doesOnlySurelySend: self class>>#m1)
+	self assert: (thisContext method doesOnlySurelySend: self class>>#m1)
 ]
 
 { #category : #tests }

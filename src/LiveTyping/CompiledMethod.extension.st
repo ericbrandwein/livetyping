@@ -13,7 +13,7 @@ CompiledMethod >> actualSendersOf: aCompiledMethod using: aCompiledMethodMethodN
 	| sendersCollector |
 	
 	sendersCollector := ActualMessageSendsCollector in: self of: aCompiledMethod.
-	aCompiledMethodMethodNode accept: sendersCollector.
+	aCompiledMethodMethodNode acceptVisitor: sendersCollector.
 	
 	^sendersCollector 
 ]
@@ -276,9 +276,8 @@ CompiledMethod >> sureMessageSendsRangesOf: aSentSelector whenSendTo: aReceiverT
 { #category : #'*LiveTyping' }
 CompiledMethod >> typeAnnotationsHolder [
 	
-	^self 
-		withPropertiesDo: [ :properties | properties ] 
-		ifSelector: [ :aSelector | MethodNotAnnotatingTypes signalFor: self ].
+	self hasProperties ifFalse: [ MethodNotAnnotatingTypes signalFor: self ].
+	^self properties
 
 
 ]

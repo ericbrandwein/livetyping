@@ -248,7 +248,7 @@ AdditionalMethodState >> setMethod: aMethod [
 	1 to: self basicSize do:
 		[ :i |
 		(propertyOrPragma := self basicAt: i) isVariableBinding ifFalse:
-			[propertyOrPragma setMethod: aMethod]].
+			[propertyOrPragma method: aMethod]].
 		
 
 ]

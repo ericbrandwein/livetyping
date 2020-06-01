@@ -251,11 +251,12 @@ ReturnTypeInfoTest >> test15ReturnTypesOfAbstractMethodsIncludesSubclassesImplem
 
 { #category : #tests }
 ReturnTypeInfoTest >> test16ReturnTypesOfAbstractMethodWorksWhenNotImplementedInAllSubclasses [
-
 	| returnTypes |
-	
-	returnTypes := TypeInfoRootTestClass returnTypesAt: #implementedOnSibling1Only.
-	
+	returnTypes := TypeInfoRootTestClass
+		returnTypesAt: #implementedOnSibling1Only.
 	self assert: 1 equals: returnTypes size.
-	self assert: (returnTypes includesAllOf: (TypeInfoSibling1TestClass returnTypesAt: #implementedOnSibling1Only)) 
+	self
+		assert:
+			(returnTypes
+				includesAll: (TypeInfoSibling1TestClass returnTypesAt: #implementedOnSibling1Only))
 ]

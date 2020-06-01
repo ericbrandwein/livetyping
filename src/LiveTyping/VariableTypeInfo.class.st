@@ -418,8 +418,7 @@ VariableTypeInfo >> typesIncludes: aType [
 
 { #category : #types }
 VariableTypeInfo >> typesIncludesAllOf: aTypesCollection [
-	
-	^self types includesAllOf: aTypesCollection 
+	^ self types includesAll: aTypesCollection
 ]
 
 { #category : #types }

@@ -1,6 +1,6 @@
 Class {
 	#name : #ActualMessageSendsCollector,
-	#superclass : #Object,
+	#superclass : #RBProgramNodeVisitor,
 	#instVars : [
 		'sent',
 		'toAnalize',
@@ -27,7 +27,7 @@ ActualMessageSendsCollector >> analizeMessageSend: aMessageNode [
 	 | receiverTypes incompleteTypeInfoReasons |
 
 	incompleteTypeInfoReasons := Set new.
-	receiverTypes := aMessageNode receiverOrCascadeReceiver typesIn: toAnalize addingIncompleteTypeInfoTo: incompleteTypeInfoReasons.			
+	receiverTypes := aMessageNode receiver typesIn: toAnalize addingIncompleteTypeInfoTo: incompleteTypeInfoReasons.			
 	
 	receiverTypes isEmpty
 		ifTrue: [ possibleMessageSends add: aMessageNode->(Array with: 'Could not get receiver''s type info') ]
@@ -91,7 +91,7 @@ ActualMessageSendsCollector >> sureMessageSends [
 { #category : #visiting }
 ActualMessageSendsCollector >> visitMessageNode: aMessageNode [
 	
-	(aMessageNode selector isNamed: sentSelector) ifTrue: [ self analizeMessageSend: aMessageNode ].
+	(aMessageNode selector = sentSelector) ifTrue: [ self analizeMessageSend: aMessageNode ].
 		
 	^super visitMessageNode: aMessageNode 
 	
