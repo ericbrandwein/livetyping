@@ -160,17 +160,17 @@ AdditionalMethodStateTest >> test05MethodWithOnlyOneTempTwoArgumentsAreInitializ
 ]
 
 { #category : #tests }
-AdditionalMethodStateTest >> test06MethodWithRemoveVectorVariablesAreInitializedCorrectly [
+AdditionalMethodStateTest >> test06MethodWithRemoteVectorVariablesAreInitializedCorrectly [
 
-	| methodUnderTest tempInRemoteVectorName tempNotInRemoveVectorName |
+	| methodUnderTest tempInRemoteVectorName tempNotInRemoteVectorName |
 	
 	methodUnderTest := self initializeTypeInfoFor: #m04_two_temps_one_temp_in_remote_vector.
 	self m04_two_temps_one_temp_in_remote_vector.
-	tempNotInRemoveVectorName := 't1'.
+	tempNotInRemoteVectorName := 't1'.
 	tempInRemoteVectorName := 't2'.
 	
 	self assertRawTypesOf: tempInRemoteVectorName in: methodUnderTest includesOnly: 1.0 class.
-	self assertRawTypesOf: tempNotInRemoveVectorName in: methodUnderTest includesOnly: 1 class.
+	self assertRawTypesOf: tempNotInRemoteVectorName in: methodUnderTest includesOnly: 1 class.
 
 	self assert: methodUnderTest properties remoteVectorRawTypes size equals: 1.
 	self assert: methodUnderTest properties variablesRawTypes size equals: 1.	
